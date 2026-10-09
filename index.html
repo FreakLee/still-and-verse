@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f6f1" />
+    <meta name="description" content="Find a line from classical Chinese writing for a moment in your life. Read its context, then make something to share." />
+    <title>Still & Verse — Find words for this moment</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="wordmark" href="./" aria-label="Still & Verse, home">Still <span>&</span> Verse<span class="wordmark-dot">.</span></a>
+        <button class="header-link" id="about-button" type="button">About the words <span aria-hidden="true">↗</span></button>
+      </header>
+
+      <main class="workspace">
+        <section class="choose-panel" aria-labelledby="page-title">
+          <div class="intro">
+            <h1 id="page-title">Find words for<br /><em>this moment.</em></h1>
+            <p>Start with how it feels. Leave with something you can share.</p>
+          </div>
+
+          <form id="verse-form">
+            <fieldset class="mood-fieldset">
+              <legend>What is this moment about?</legend>
+              <div class="mood-list" id="mood-list">
+                <label class="mood-option"><input type="radio" name="mood" value="beginning" /><span class="mood-symbol" aria-hidden="true">◌</span><span>A quiet beginning</span><span class="mood-arrow" aria-hidden="true">↗</span></label>
+                <label class="mood-option"><input type="radio" name="mood" value="missing" checked /><span class="mood-symbol" aria-hidden="true">☾</span><span>Missing someone</span><span class="mood-arrow" aria-hidden="true">↗</span></label>
+                <label class="mood-option"><input type="radio" name="mood" value="season" /><span class="mood-symbol" aria-hidden="true">❋</span><span>A change of season</span><span class="mood-arrow" aria-hidden="true">↗</span></label>
+                <label class="mood-option"><input type="radio" name="mood" value="courage" /><span class="mood-symbol" aria-hidden="true">✧</span><span>A moment of courage</span><span class="mood-arrow" aria-hidden="true">↗</span></label>
+                <label class="mood-option"><input type="radio" name="mood" value="lettinggo" /><span class="mood-symbol" aria-hidden="true">〰</span><span>Letting go</span><span class="mood-arrow" aria-hidden="true">↗</span></label>
+              </div>
+            </fieldset>
+
+            <div class="photo-label-row"><label for="photo-input">Add a photo <span>(optional)</span></label><button id="remove-photo" class="text-button" type="button" hidden>Remove</button></div>
+            <label class="upload-zone" id="upload-zone" for="photo-input">
+              <input id="photo-input" type="file" accept="image/*" />
+              <span class="upload-icon" aria-hidden="true">＋</span>
+              <span id="upload-text">Choose a photo from this moment</span>
+              <span class="upload-hint" id="upload-hint">It stays on your device</span>
+            </label>
+
+            <button class="primary-button" type="submit">Find a verse <span aria-hidden="true">↗</span></button>
+          </form>
+        </section>
+
+        <section class="verse-panel" aria-label="Your verse">
+          <div class="verse-art" id="verse-art">
+            <img id="verse-image" src="./assets/river-dusk.jpg" alt="Watercolor of a quiet river at dusk, with a figure beneath a tree" />
+            <span class="art-caption" id="art-caption">A MOMENT, HELD IN WORDS</span>
+          </div>
+          <div class="verse-content" aria-live="polite">
+            <div class="verse-eyebrow" id="verse-eyebrow">FOR THE DISTANCE BETWEEN US</div>
+            <blockquote id="english-verse">“May we both live long, and share this moon even a thousand miles apart.”</blockquote>
+            <p class="chinese-verse" id="chinese-verse" lang="zh-Hans">但愿人长久，千里共婵娟。</p>
+            <p class="verse-attribution" id="verse-attribution">Su Shi <span>·</span> <cite>Shui Diao Ge Tou</cite> <span>·</span> 1076</p>
+            <button class="context-link" id="context-button" type="button">Read the context <span aria-hidden="true">↗</span></button>
+            <div class="result-actions" id="result-actions" hidden>
+              <button class="secondary-button" id="another-button" type="button">Another verse <span aria-hidden="true">↗</span></button>
+              <button class="secondary-button" id="copy-button" type="button">Copy words <span aria-hidden="true">⧉</span></button>
+              <button class="secondary-button" id="download-button" type="button">Download card <span aria-hidden="true">↓</span></button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer"><span>Every line is checked against its source.</span><span>Classical Chinese words for everyday life.</span></footer>
+    </div>
+
+    <dialog id="context-dialog" class="context-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-topline"><span>BEHIND THE WORDS</span><button id="close-dialog" class="dialog-close" type="button" aria-label="Close">×</button></div>
+      <h2 id="dialog-title"></h2>
+      <p class="dialog-original" id="dialog-original" lang="zh-Hans"></p>
+      <p class="dialog-rendering" id="dialog-rendering"></p>
+      <div class="dialog-rule"></div>
+      <h3>What this line meant then</h3>
+      <p id="dialog-context"></p>
+      <h3>Why it fits this moment</h3>
+      <p id="dialog-fit"></p>
+      <a id="dialog-source" class="source-link" href="#" target="_blank" rel="noopener noreferrer">Read the source text <span aria-hidden="true">↗</span></a>
+      <p class="translation-note">English lines are our own interpretive renderings of public-domain classical Chinese texts. They are meant to convey the feeling of the original, not replace it.</p>
+    </dialog>
+    <dialog id="about-dialog" class="context-dialog" aria-labelledby="about-title">
+      <div class="dialog-topline"><span>ABOUT STILL & VERSE</span><button id="close-about" class="dialog-close" type="button" aria-label="Close">×</button></div>
+      <h2 id="about-title">Old words, present moments.</h2>
+      <p class="dialog-rendering">A small way to meet classical Chinese writing through something you are living now.</p>
+      <div class="dialog-rule"></div>
+      <h3>How it works</h3>
+      <p>Choose a feeling, then explore one of two hand-selected lines. Each result keeps the original Chinese, an interpretive English rendering, a short account of its context, and a link to the source text together.</p>
+      <h3>Make it yours</h3>
+      <p>Add a photo if you like. It is previewed and used to make your downloadable card in your browser; this site does not upload or store it.</p>
+      <p class="translation-note">This is an early, curated prototype. A line can speak to a new moment without losing the particular time and people it came from.</p>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
