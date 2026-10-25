@@ -2,9 +2,9 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-button,input{font:inherit}
+button,input,textarea{font:inherit}
 button{cursor:pointer}
-button:focus-visible,a:focus-visible,input:focus-visible,.upload-zone:focus-within{outline:2px solid var(--accent);outline-offset:3px}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible,.upload-zone:focus-within{outline:2px solid var(--accent);outline-offset:3px}
 .page-shell{max-width:1512px;min-height:100vh;margin:auto;padding:0 76px;display:flex;flex-direction:column}
 .site-header{height:96px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
 .wordmark{text-decoration:none;color:var(--ink);font-family:var(--serif);font-size:29px;font-weight:600;letter-spacing:-1.6px;line-height:1}.wordmark span:first-child{font-style:italic;font-weight:400}.wordmark-dot{color:var(--accent);font-style:normal!important}
@@ -21,3 +21,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,.upload-zone:focus-with
 @media(max-width:760px){.page-shell{padding:0 23px}.site-header{height:70px}.wordmark{font-size:24px}.workspace{grid-template-columns:1fr;gap:47px;padding:49px 0 40px}.choose-panel{max-width:640px}.intro h1{font-size:clamp(51px,11vw,70px)}.intro p{margin:17px 0 38px}.verse-panel{border-left:0;border-top:1px solid var(--line);padding:38px 0 0}.verse-art{height:clamp(240px,65vw,420px)}.verse-content{padding-top:31px}.verse-content blockquote{font-size:clamp(33px,8vw,45px)}.site-footer{padding:17px 0;gap:9px;flex-wrap:wrap;line-height:1.4}.site-footer span:last-child{display:none}}
 @media(max-width:430px){.page-shell{padding:0 17px}.header-link{font-size:11px}.header-link span{margin-left:3px}.workspace{padding-top:43px}.intro h1{letter-spacing:-2px}.mood-option{height:52px}.context-dialog{padding:25px 24px}.context-dialog h2{font-size:36px}.result-actions{display:grid;grid-template-columns:1fr 1fr}.secondary-button:last-child{grid-column:1/-1}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+.using-words .mood-list{opacity:.45;transition:opacity .18s}.using-words .mood-list:hover{opacity:1}
+.words-field{margin-top:33px}.words-field label,.ai-settings label{display:block;font-weight:700;font-size:14px;letter-spacing:-.15px;margin-bottom:13px}.words-field label span{font-weight:400;color:#92938d}
+.words-field textarea{display:block;width:100%;min-height:92px;resize:vertical;border:1px solid var(--line);background:#fbfaf6;color:var(--ink);padding:13px 16px;font-size:14px;line-height:1.5}.words-field textarea:hover{border-color:#bca599}.words-field textarea::placeholder{color:#a3a49c}
+.field-hint{margin:8px 0 0;color:#9b9e95;font-size:11px;line-height:1.5}
+.ai-settings{margin-top:18px;border:1px solid var(--line);padding:0 16px}.ai-settings summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:48px;cursor:pointer;font-size:13px;font-weight:600;color:#454942}.ai-settings summary::-webkit-details-marker{display:none}.ai-settings summary>span:first-child::before{content:"✧";color:var(--accent);margin-right:9px}.ai-settings[open]{padding-bottom:15px}.ai-settings label{font-size:12px;margin:4px 0 8px}
+.ai-status{font-size:11px;font-weight:500;color:#92938d;white-space:nowrap}.ai-status.on{color:var(--accent)}
+.key-row{display:flex;gap:10px;align-items:center}.key-row input{flex:1;min-width:0;height:40px;border:1px solid var(--line);background:#fbfaf6;padding:0 12px;font-size:13px;color:var(--ink)}
+.primary-button .button-label{font-size:inherit;font-weight:inherit}.primary-button:disabled{opacity:.7;cursor:progress;transform:none}.secondary-button:disabled{opacity:.5;cursor:progress}
+.verse-content{transition:opacity .2s}.verse-content.is-loading{opacity:.45}
+.verse-why{max-width:650px;margin:4px 0 20px;padding:16px 18px;background:var(--accent-pale);border-left:2px solid var(--accent)}.verse-why[hidden]{display:none}.why-label{color:var(--accent);font-size:10px;letter-spacing:2px;font-weight:700;margin-bottom:8px}.verse-why p{margin:0;font-size:14px;line-height:1.6;color:#4c5048}.verse-why .why-note{margin-top:9px;font-size:11px;color:#94978e}
+@media(max-width:430px){.ai-settings summary{flex-wrap:wrap;gap:2px;padding:10px 0}}

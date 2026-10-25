@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
+    <script src="./library.js" defer></script>
     <script src="./app.js" defer></script>
   </head>
   <body>
@@ -39,6 +40,19 @@
               </div>
             </fieldset>
 
+            <div class="words-field">
+              <label for="feeling-input">Or say it in your own words <span>(optional)</span></label>
+              <textarea id="feeling-input" rows="3" maxlength="400" placeholder="My dad retires next week and I don't know what to write in his card."></textarea>
+              <p class="field-hint">When you write something here, it is used instead of the mood above.</p>
+            </div>
+
+            <details class="ai-settings">
+              <summary><span>Let Claude choose and explain</span><span class="ai-status" id="ai-status">Off · keyword matching</span></summary>
+              <label for="api-key-input">Anthropic API key</label>
+              <div class="key-row"><input id="api-key-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk-ant-…" /><button id="forget-key" class="text-button" type="button" hidden>Forget</button></div>
+              <p class="field-hint">For trying the prototype with your own key. It is kept only in this tab and sent only to api.anthropic.com, along with your words. Claude picks from our checked library; it never writes the verse.</p>
+            </details>
+
             <div class="photo-label-row"><label for="photo-input">Add a photo <span>(optional)</span></label><button id="remove-photo" class="text-button" type="button" hidden>Remove</button></div>
             <label class="upload-zone" id="upload-zone" for="photo-input">
               <input id="photo-input" type="file" accept="image/*" />
@@ -47,7 +61,7 @@
               <span class="upload-hint" id="upload-hint">It stays on your device</span>
             </label>
 
-            <button class="primary-button" type="submit">Find a verse <span aria-hidden="true">↗</span></button>
+            <button class="primary-button" id="find-button" type="submit"><span class="button-label">Find a verse</span> <span aria-hidden="true">↗</span></button>
           </form>
         </section>
 
@@ -61,6 +75,11 @@
             <blockquote id="english-verse">“May we both live long, and share this moon even a thousand miles apart.”</blockquote>
             <p class="chinese-verse" id="chinese-verse" lang="zh-Hans">但愿人长久，千里共婵娟。</p>
             <p class="verse-attribution" id="verse-attribution">Su Shi <span>·</span> <cite>Shui Diao Ge Tou</cite> <span>·</span> 1076</p>
+            <div class="verse-why" id="verse-why" hidden>
+              <div class="why-label" id="why-label">WHY THIS LINE</div>
+              <p id="why-text"></p>
+              <p class="why-note" id="why-note"></p>
+            </div>
             <button class="context-link" id="context-button" type="button">Read the context <span aria-hidden="true">↗</span></button>
             <div class="result-actions" id="result-actions" hidden>
               <button class="secondary-button" id="another-button" type="button">Another verse <span aria-hidden="true">↗</span></button>
@@ -93,7 +112,9 @@
       <p class="dialog-rendering">A small way to meet classical Chinese writing through something you are living now.</p>
       <div class="dialog-rule"></div>
       <h3>How it works</h3>
-      <p>Choose a feeling, then explore one of two hand-selected lines. Each result keeps the original Chinese, an interpretive English rendering, a short account of its context, and a link to the source text together.</p>
+      <p>Choose a feeling, or describe your moment in a sentence. Every line comes from a small hand-checked library. Each result keeps the original Chinese, an interpretive English rendering, a short account of its context, and a link to the source text together.</p>
+      <h3>Where Claude comes in</h3>
+      <p>If you add an Anthropic API key, your words go to Claude together with a shortlist of matching lines. Claude chooses one and writes a short note on why it fits. It never writes or changes the verse, translation, or source. Without a key, lines are matched by the words you use.</p>
       <h3>Make it yours</h3>
       <p>Add a photo if you like. It is previewed and used to make your downloadable card in your browser; this site does not upload or store it.</p>
       <p class="translation-note">This is an early, curated prototype. A line can speak to a new moment without losing the particular time and people it came from.</p>
